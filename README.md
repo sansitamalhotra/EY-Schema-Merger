@@ -1,189 +1,192 @@
-🌟 Overview
+<div align="center">
 
-When two banks merge, data chaos follows — each system has its own schema, column names, and formats.
-Schema Sync is your AI-powered copilot that maps, merges, and validates financial datasets across institutions — producing a unified schema and audit trail in minutes, not days.
+<h1>Schema Sync</h1>
+<h3><em>The AI Copilot for Data Integration</em></h3>
 
-It’s like GitHub Copilot — but for data mapping and schema reconciliation.
+<p><strong>Unifying financial data across institutions with intelligence, transparency, and speed.</strong></p>
 
-🎯 Key Features
+<!-- Badges (feel free to keep/remove) -->
+<a href="http://127.0.0.1:8000/docs"><img alt="FastAPI" src="https://img.shields.io/badge/Backend-FastAPI-009688.svg"></a>
+<img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776AB.svg">
+<img alt="Frontend" src="https://img.shields.io/badge/Frontend-Next.js%20%2B%20React-000000.svg">
+<img alt="License" src="https://img.shields.io/badge/License-MIT-purple.svg">
 
-🤖 AI Schema Matching — Embedding-based NLP (OpenAI/SBERT) for semantic column alignment
+<p>Built for the <strong>EY Canada Data Integration Challenge – Hack the Valley X 2025</strong></p>
+</div>
 
-📂 Multi-Format Uploads — Supports CSV, Excel (.xlsx, .xls), and JSON
+---
 
-🧩 Visual Mapping Workspace — Side-by-side schemas with drag-to-match & confidence scores
+## 🧭 Table of Contents
+- [Overview](#-overview)
+- [Key Features](#-key-features)
+- [Architecture](#-architecture)
+- [Quick Start](#-quick-start)
+- [API Endpoints](#-api-endpoints)
+- [Detailed Workflow](#-detailed-workflow)
+- [Outputs & Artifacts](#-outputs--artifacts)
+- [Security & Privacy](#-security--privacy)
+- [Troubleshooting](#-troubleshooting)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Contact](#-contact)
 
-📈 Analytics Dashboard — Power BI–style insights: completeness, overlaps, KPIs
+---
 
-⚙️ Conflict Resolver — Detects mismatched fields, missing data, format inconsistencies
+## 🌟 Overview
+When two banks merge, **data chaos follows**—each system has its own schema, column names, and formats.  
+**Schema Sync** is your AI-powered copilot that **maps, merges, and validates** financial datasets across institutions, producing a **unified schema** and a **full audit trail** in minutes, not days.
 
-🧾 Report Generation — Exports Excel & PDF with mappings and confidence metrics
+> Think **GitHub Copilot**—but for **data mapping** and **schema reconciliation**.
 
-🛡️ Secure Local Processing — All data handled locally with transparency
+---
 
-🎨 Elegant UI — Built with Next.js, Tailwind, and shadcn/ui
+## 🎯 Key Features
+- **🤖 AI Schema Matching** — Embedding-based NLP (OpenAI/SBERT) for semantic alignment  
+- **📂 Multi-Format Uploads** — CSV, Excel (`.xlsx`, `.xls`), JSON  
+- **🧩 Visual Mapping Workspace** — Side-by-side schemas with drag-to-match + confidence scores  
+- **📈 Analytics Dashboard** — Completeness, overlaps, conflicts, and KPIs  
+- **⚙️ Conflict Resolver** — Detects mismatches, missing data, and format inconsistencies  
+- **🧾 Report Generation** — Excel/PDF with mappings, confidence, and lineage  
+- **🛡️ Local Processing** — No cloud uploads; transparent by design  
+- **🎨 Modern UI** — Next.js + Tailwind + shadcn/ui
 
-🏗️ Architecture
-🧠 Backend (FastAPI + Python)
+---
 
-Schema Parser — Reads and normalizes schema structure
+## 🏗️ Architecture
 
-AI Matcher — Uses embeddings for semantic field pairing
+### Backend (FastAPI + Python)
+- **Schema Parser** — Reads & normalizes schemas  
+- **AI Matcher** — Embedding similarity (SBERT/OpenAI)  
+- **Merge Engine** — Builds unified master schema  
+- **Analytics Service** — Completeness/overlap/conflicts  
+- **Report Generator** — Excel/PDF with audit trail  
+- **Storage Layer** — Organized directories per institution
 
-Merge Engine — Combines datasets into a unified schema
+### Frontend (Next.js + React + Tailwind)
+- **Guided flow:** Upload → Map → Merge → Analyze → Export  
+- **Drag & Drop** for Bank A / Bank B  
+- **Live Confidence View** + mapping health  
+- **Responsive dashboard** with KPIs & charts
 
-Analytics Service — Computes completeness & conflict metrics
+---
 
-Report Generator — Exports Excel/PDF with audit trail
+## 🚀 Quick Start
 
-Storage Layer — Organizes files per institution
+### Prerequisites
+- Python **3.10+**
+- Node.js **18+**
+- (Optional) OpenAI API key if using OpenAI embeddings
 
-💻 Frontend (Next.js + React + Tailwind)
-
-Guided Workflow — Upload → Map → Merge → Analyze → Export
-
-Drag-and-Drop Uploads — Containers for Bank A & Bank B datasets
-
-Dynamic Mapping View — Real-time AI confidence scores
-
-Interactive Dashboard — KPIs, charts, and data completeness metrics
-
-Responsive Design — Optimized for all devices
-
-🚀 Quick Start
-🧰 Prerequisites
-
-Python 3.11+
-
-Node.js 18+
-
-An OpenAI API Key
-
-⚙️ 1. Clone the Repository
+### 1) Clone
+```bash
 git clone https://github.com/your-username/schema-sync.git
 cd schema-sync
+2) Backend (port 8000)
+No requirements.txt in this repo—install core deps manually:
 
-📦 2. Backend Setup
-
-There’s no requirements.txt, so install dependencies manually.
-
+bash
+Copy code
 cd backend
-pip install fastapi uvicorn openai pandas python-multipart
-
-
-Then start the backend:
-
+pip install fastapi uvicorn pandas python-multipart sentence-transformers torch openpyxl
 uvicorn main:app --reload --port 8000
+Docs: http://127.0.0.1:8000/docs
 
-💻 3. Frontend Setup
-cd ../frontend
+3) Frontend
+bash
+Copy code
+cd ../my-app
 npm install
 npm run dev
+Open: http://localhost:3000
 
-🌐 4. Access the App
-Service	URL
-Frontend	http://localhost:3000
+Tip: If you later add an .env, keep secrets there (e.g., OPENAI_API_KEY). This project runs fine without one.
 
-Backend	http://localhost:8000
+🔌 API Endpoints
+Base URL: http://127.0.0.1:8000
 
-Health Check	http://localhost:8000/health
-🧩 5. Configure Environment Variables
+Method	Endpoint	What it does
+POST	/run-pipeline	Run the full pipeline (parse → map → merge)
+POST	/schemas/parse	Parse uploaded schemas (Excel → JSON)
+GET	/schemas/list	List available parsed schema JSONs
+GET	/schemas/{name}	Read a specific schema JSON
+GET	/auto-map	Run AI-based schema matching
+POST	/upload	Upload files (schemas/data)
 
-Create a .env file in /backend and add:
+🧪 Detailed Workflow
+Stage 1 — Table Mapping
+Encode table names with Sentence-BERT, compute cosine similarity
 
-OPENAI_API_KEY=your_openai_api_key_here
-FASTAPI_PORT=8000
+Confidence threshold CONF_THRESHOLD = 73% → Confident Match
 
-🧪 Usage Guide
-Step 1 – Upload Schemas
+Outputs: table_name_mapping.json, bank2_renamed_schema.json
 
-Upload Bank A and Bank B schema files
+Stage 2 — File → Logical Table Manifest
+Normalize filenames and map to canonical table tokens
 
-Schema Sync auto-detects columns, data types, and formats
+Output: merge_manifest.json (file → logical table, with bank label)
 
-Step 2 – AI Mapping
+Stage 3 — Field-Level Mapping
+Encode field strings (name + type + sample) and match
 
-View AI-suggested pairings with confidence scores
+Outputs: field_name_mapping.json, unified_schema.json
 
-Drag and adjust or approve mappings manually
+Stage 4 — Raw Ingestion
+Load Excel/CSV → pandas; add bank_origin
 
-Step 3 – Merge Preview
+Persist to SQLite (merged_banks.db)
 
-Review unified dataset
+Stage 5 — Transform & Merge
+Apply column renames from field mapping
 
-See live stats: records merged, overlap %, unresolved fields
+Standardize types (dates → YYYY-MM-DD, numerics, identifiers)
 
-Step 4 – Analytics Dashboard
+Merge A+B; detect conflicts
 
-Completeness Score gauge
+Stage 6 — Conflict Resolution
+Prefer non-nulls; tie-break (e.g., Bank A wins or most-recent timestamp)
 
-Conflict & overlap summaries
+Log decisions with lineage
 
-Visual charts for insight into integration quality
+Stage 7 — Reporting
+Export unified dataset (CSV/Excel)
 
-Step 5 – Export
+Generate Integration Report (PDF) with mappings, confidences, KPIs
 
-Download unified dataset (Excel/CSV)
+📦 Outputs & Artifacts
+table_name_mapping.json — table matches + confidence
 
-Generate PDF Integration Report with mappings, KPIs, and audit trail
+field_name_mapping.json — column matches + confidence
 
-🔧 API Endpoints
-Method	Endpoint	Description
-GET	/health	Check server status
-POST	/schemas/parse	Parse uploaded schema
-POST	/upload	Upload data files
-POST	/process/ai-map	Trigger AI schema matching
-GET	/download/	Download unified dataset
-POST	/cleanup	Remove temporary data
-🧱 Project Structure
-schema-sync/
-├── backend/
-│   ├── main.py
-│   ├── matcher.py
-│   ├── merger.py
-│   ├── parser.py
-│   └── uploaded_files/
-│       ├── bankA/
-│       └── bankB/
-├── frontend/
-│   ├── pages/
-│   ├── components/
-│   ├── public/images/
-│   └── styles/
-├── reports/
-└── README.md
+unified_schema.json — canonical fields + lineage
+
+merge_manifest.json — file → logical table mapping
+
+merged_banks.db — SQLite (raw + unified tables)
+
+IntegrationReport.pdf — summary, KPIs, conflicts
 
 🔒 Security & Privacy
+Local-only processing; no data leaves your machine
 
-Local-Only Processing — No cloud data transfer
+Strict file validation (type/size)
 
-Strict Validation — File type & size checks
+Optional temp cleanup after export
 
-Auto Cleanup — Deletes temp files post-export
-
-Environment Security — API key stored in .env
-
-Sanitized Logs — No sensitive data retained
+Logs avoid sensitive content
 
 🧰 Troubleshooting
 Issue	Fix
-Backend fails to start	Reinstall deps, confirm Python 3.11+
-Frontend blank page	Clear cache or rerun npm run dev
-AI mapping not working	Check OPENAI_API_KEY validity
-File not recognized	Use CSV/Excel under 50 MB
+Backend won’t start	Ensure Python 3.10+, reinstall deps; check uvicorn command
+Frontend blank page	Clear cache, rerun npm run dev
+Mapping errors	Confirm sentence-transformers + torch installed
+Excel parsing error	Install openpyxl; keep files under ~50 MB
+
 🤝 Contributing
+Fork → git checkout -b feature/your-feature
 
-Fork this repository
-
-Create a new branch → git checkout -b feature/your-feature
-
-Commit your changes → git commit -m "Add new feature"
+Commit → git commit -m "Add feature"
 
 Push → git push origin feature/your-feature
 
 Open a Pull Request
-Schema Sync — Bridging data across banks with AI and trust.
-Made with ❤️ at Hack the Valley X 2025
 
-Schema Sync — Bridging data across banks with AI and trust.
-Made with ❤️ at Hack the Valley X 2025
