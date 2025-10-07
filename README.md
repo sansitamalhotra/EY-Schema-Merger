@@ -1,142 +1,140 @@
-<div align="center">Schema Sync – AI-Powered Data Integration for Financial Institutions </div>
-<div align="center"> <img width="400" height="600" alt="raw" src="https://github.com/user-attachments/assets/2c5f2cc8-ab82-4e1e-a257-e69be7cb742d" /><h3>Schema Sync – The AI Copilot for Data Integration</h3> <p><em>Unifying financial data across institutions with intelligence, transparency, and speed</em></p> <p><strong>Built for the EY Canada Data Integration Challenge – Hack the Valley X</strong></p> </div>
-
 🌟 Overview
 
-When two banks merge, data chaos follows. Each system has its own schema, column names, and formats — making integration a long, manual process.
-Schema Sync is your AI-powered copilot that automatically maps, merges, and validates financial datasets across institutions, producing a unified schema and full audit trail — in minutes, not days.
+When two banks merge, data chaos follows — each system has its own schema, column names, and formats.
+Schema Sync is your AI-powered copilot that maps, merges, and validates financial datasets across institutions — producing a unified schema and audit trail in minutes, not days.
 
 It’s like GitHub Copilot — but for data mapping and schema reconciliation.
 
 🎯 Key Features
 
-🤖 AI Schema Matching – Embedding-based NLP matching using OpenAI for column alignment
+🤖 AI Schema Matching — Embedding-based NLP (OpenAI/SBERT) for semantic column alignment
 
-📂 Multi-Format Uploads – Works with CSV, Excel (.xlsx, .xls), and JSON files
+📂 Multi-Format Uploads — Supports CSV, Excel (.xlsx, .xls), and JSON
 
-🧩 Visual Mapping Workspace – Two schemas side-by-side with drag-to-match + confidence scores
+🧩 Visual Mapping Workspace — Side-by-side schemas with drag-to-match & confidence scores
 
-📈 Data Analytics Dashboard – Power BI–style insights with completeness scores, overlaps, and KPIs
+📈 Analytics Dashboard — Power BI–style insights: completeness, overlaps, KPIs
 
-⚙️ Conflict Resolver – Detects mismatched fields, missing data, and format inconsistencies
+⚙️ Conflict Resolver — Detects mismatched fields, missing data, format inconsistencies
 
-🧾 Report Generation – Auto-creates Excel and PDF reports with field mappings and confidence metrics
+🧾 Report Generation — Exports Excel & PDF with mappings and confidence metrics
 
-🛡️ Secure Local Processing – All data handled locally with full transparency
+🛡️ Secure Local Processing — All data handled locally with transparency
 
-🎨 Elegant UI – Clean, modern interface built with Next.js, Tailwind, and shadcn/ui
+🎨 Elegant UI — Built with Next.js, Tailwind, and shadcn/ui
 
 🏗️ Architecture
-Backend (FastAPI + Python)
+🧠 Backend (FastAPI + Python)
 
-Schema Parser – Reads and normalizes schema structure
+Schema Parser — Reads and normalizes schema structure
 
-AI Matcher – Uses embeddings (OpenAI/SBERT) for semantic field pairing
+AI Matcher — Uses embeddings for semantic field pairing
 
-Merge Engine – Consolidates data into a unified master schema
+Merge Engine — Combines datasets into a unified schema
 
-Analytics Service – Computes completeness, conflicts, and overlap metrics
+Analytics Service — Computes completeness & conflict metrics
 
-Report Generator – Produces Excel/PDF outputs with audit trail
+Report Generator — Exports Excel/PDF with audit trail
 
-Storage Layer – Organized directories per institution
+Storage Layer — Organizes files per institution
 
-Frontend (Next.js + React + Tailwind)
+💻 Frontend (Next.js + React + Tailwind)
 
-Step-Based Workflow – Guided stages: Upload → Map → Merge → Analyze → Export
+Guided Workflow — Upload → Map → Merge → Analyze → Export
 
-Drag-and-Drop Uploads – Two containers for Bank A and Bank B datasets
+Drag-and-Drop Uploads — Containers for Bank A & Bank B datasets
 
-Dynamic Mapping View – Real-time confidence visualization
+Dynamic Mapping View — Real-time AI confidence scores
 
-Interactive Dashboard – Live KPIs, charts, and completeness scores
+Interactive Dashboard — KPIs, charts, and data completeness metrics
 
-Responsive Design – Optimized for desktop, tablet, and mobile
+Responsive Design — Optimized for all devices
 
 🚀 Quick Start
-Prerequisites
+🧰 Prerequisites
 
 Python 3.11+
 
 Node.js 18+
 
-OpenAI API Key
+An OpenAI API Key
 
-1️⃣ Clone and Install
+⚙️ 1. Clone the Repository
 git clone https://github.com/your-username/schema-sync.git
 cd schema-sync
 
-# Backend
-cd backend
-pip install -r requirements.txt
+📦 2. Backend Setup
 
-# Frontend
+There’s no requirements.txt, so install dependencies manually.
+
+cd backend
+pip install fastapi uvicorn openai pandas python-multipart
+
+
+Then start the backend:
+
+uvicorn main:app --reload --port 8000
+
+💻 3. Frontend Setup
 cd ../frontend
 npm install
-
-2️⃣ Configure Environment
-cp env.example .env
-OPENAI_API_KEY=your_openai_api_key_here
-FASTAPI_PORT=8001
-
-3️⃣ Run the App
-# Backend
-cd backend
-uvicorn main:app --reload --port 8001
-
-# Frontend
-cd frontend
 npm run dev
 
-4️⃣ Access
+🌐 4. Access the App
+Service	URL
+Frontend	http://localhost:3000
 
-Frontend: http://localhost:3000
+Backend	http://localhost:8000
 
-Backend: http://localhost:8001
+Health Check	http://localhost:8000/health
+🧩 5. Configure Environment Variables
 
-Health Check: http://localhost:8001/health
+Create a .env file in /backend and add:
 
-🧭 Usage Guide
+OPENAI_API_KEY=your_openai_api_key_here
+FASTAPI_PORT=8000
+
+🧪 Usage Guide
 Step 1 – Upload Schemas
 
-Upload Bank A and Bank B schema files.
+Upload Bank A and Bank B schema files
 
-Schema Sync auto-detects columns, types, and structures.
+Schema Sync auto-detects columns, data types, and formats
 
 Step 2 – AI Mapping
 
-View auto-suggested column pairings with confidence scores.
+View AI-suggested pairings with confidence scores
 
-Drag to adjust or approve mappings manually.
+Drag and adjust or approve mappings manually
 
 Step 3 – Merge Preview
 
-Review unified dataset and flagged inconsistencies.
+Review unified dataset
 
-Live metrics: records merged, % overlap, fields unresolved.
+See live stats: records merged, overlap %, unresolved fields
 
 Step 4 – Analytics Dashboard
 
 Completeness Score gauge
 
-Conflict summaries
+Conflict & overlap summaries
 
-Overlap and regional breakdown charts
+Visual charts for insight into integration quality
 
 Step 5 – Export
 
 Download unified dataset (Excel/CSV)
 
-Generate full Integration Report (PDF) with visual mappings and KPIs
+Generate PDF Integration Report with mappings, KPIs, and audit trail
 
 🔧 API Endpoints
 Method	Endpoint	Description
-GET	/health	Server status
+GET	/health	Check server status
 POST	/schemas/parse	Parse uploaded schema
 POST	/upload	Upload data files
-POST	/process/ai-map	Trigger AI schema mapping
-GET	/download/<filename>	Download unified dataset
-POST	/cleanup	Remove temporary files
+POST	/process/ai-map	Trigger AI schema matching
+GET	/download/	Download unified dataset
+POST	/cleanup	Remove temporary data
 🧱 Project Structure
 schema-sync/
 ├── backend/
@@ -157,44 +155,35 @@ schema-sync/
 
 🔒 Security & Privacy
 
-Local-Only Processing – No cloud upload
+Local-Only Processing — No cloud data transfer
 
-Strict Validation – File size/type checks
+Strict Validation — File type & size checks
 
-Auto Cleanup – Deletes temporary data after export
+Auto Cleanup — Deletes temp files post-export
 
-API Key Security – Stored in .env
+Environment Security — API key stored in .env
 
-Sanitized Logs – No sensitive data exposure
+Sanitized Logs — No sensitive data retained
 
-🐛 Troubleshooting
-Issue	Solution
-Backend fails to start	Reinstall dependencies, check Python 3.11+
+🧰 Troubleshooting
+Issue	Fix
+Backend fails to start	Reinstall deps, confirm Python 3.11+
 Frontend blank page	Clear cache or rerun npm run dev
-AI Mapping errors	Verify OPENAI_API_KEY is active
-File not recognized	Use CSV or Excel under 50 MB
+AI mapping not working	Check OPENAI_API_KEY validity
+File not recognized	Use CSV/Excel under 50 MB
 🤝 Contributing
 
-Fork the repository
+Fork this repository
 
-Create a feature branch → git checkout -b feature/new-feature
+Create a new branch → git checkout -b feature/your-feature
 
-Commit changes → git commit -m "Add feature"
+Commit your changes → git commit -m "Add new feature"
 
-Push → git push origin feature/new-feature
+Push → git push origin feature/your-feature
 
 Open a Pull Request
+Schema Sync — Bridging data across banks with AI and trust.
+Made with ❤️ at Hack the Valley X 2025
 
-📄 License
-
-Licensed under the MIT License – see LICENSE
-
-📞 Contact
-
-GitHub Issues: Schema Sync Repo
-
-Email: support@schemasync.ai
-
-Website: schemasync.ai
-
-<div align="center"> <p><strong>Schema Sync</strong> – Bridging data across banks with AI and trust.</p> <p>Made with ❤️ at Hack the Valley X 2025</p> </div>
+Schema Sync — Bridging data across banks with AI and trust.
+Made with ❤️ at Hack the Valley X 2025
